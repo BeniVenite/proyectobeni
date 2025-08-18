@@ -65,7 +65,7 @@ app.get('/historial_medico', (req, res) => {
 });
 
 app.get('/personas', (req, res) => {
-    let sql = 'SELECT * FROM personas';
+    let sql = 'SELECT niobre ,apellido FROM personas';
     conexion.query(sql, (err, result) => {
         if (err) {
             console.error("Error en la consulta:", err);
