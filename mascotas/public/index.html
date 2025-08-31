@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetCare Plus - Gestión Completa</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body { padding: 20px; background: #f8f9fa; }
+.tab-content { margin-top: 20px; }
+table th, table td { vertical-align: middle !important; }
+.filter-input { width: 250px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="text-center mb-4">PetCare Plus - Gestión Completa</h1>
+
+  <!-- Nav Tabs -->
+  <ul class="nav nav-tabs" id="tabMenu" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#personas-tab">Personas</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#animales-tab">Animales</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#adopciones-tab">Adopciones</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#donaciones-tab">Donaciones</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#historial-tab">Historial Médico</button></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- Personas -->
+    <div class="tab-pane fade show active" id="personas-tab">
+      <div class="mt-3">
+        <h4>Agregar/Editar Persona</h4>
+        <form id="form-personas" class="row g-3 mb-3">
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="ID" id="personas-ID_Persona" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Nombre" id="personas-Nombre" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Apellido" id="personas-Apellido" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="CI" id="personas-CI"></div>
+          <div class="col-md-2"><input type="date" class="form-control" id="personas-Fecha_Nacimiento"></div>
+          <div class="col-md-2">
+            <select class="form-select" id="personas-Genero">
+              <option value="">Género</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Dirección" id="personas-Direccion"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Teléfono" id="personas-Telefono"></div>
+          <div class="col-md-2"><input type="email" class="form-control" placeholder="Email" id="personas-Email"></div>
+          <div class="col-md-2">
+            <select class="form-select" id="personas-Rol">
+              <option value="Adoptante">Adoptante</option>
+              <option value="Donante">Donante</option>
+              <option value="Voluntario">Voluntario</option>
+              <option value="Empleado">Empleado</option>
+            </select>
+          </div>
+          <div class="col-12"><button class="btn btn-success">Guardar</button></div>
+        </form>
+
+        <input type="text" class="filter-input form-control" id="filter-personas" placeholder="Filtrar personas...">
+        <table class="table table-striped" id="personas-table">
+          <thead></thead><tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Animales -->
+    <div class="tab-pane fade" id="animales-tab">
+      <div class="mt-3">
+        <h4>Agregar/Editar Animal</h4>
+        <form id="form-animales" class="row g-3 mb-3">
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="ID" id="animales-ID_Animal" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Nombre" id="animales-Nombre" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Especie" id="animales-Especie" required></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Raza" id="animales-Raza"></div>
+          <div class="col-md-2">
+            <select class="form-select" id="animales-Sexo">
+              <option value="">Sexo</option>
+              <option value="Macho">Macho</option>
+              <option value="Hembra">Hembra</option>
+            </select>
+          </div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Color" id="animales-Color"></div>
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="Edad" id="animales-Edad"></div>
+          <div class="col-md-2"><input type="number" step="0.01" class="form-control" placeholder="Peso" id="animales-Peso"></div>
+          <div class="col-md-2"><input type="date" class="form-control" id="animales-Fecha_Ingreso"></div>
+          <div class="col-md-2"><select class="form-select" id="animales-Esterilizado"><option value="0">No</option><option value="1">Sí</option></select></div>
+          <div class="col-md-2"><select class="form-select" id="animales-Vacunado"><option value="0">No</option><option value="1">Sí</option></select></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Estado" id="animales-Estado"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Foto URL" id="animales-Foto"></div>
+          <div class="col-12"><button class="btn btn-success">Guardar</button></div>
+        </form>
+
+        <input type="text" class="filter-input form-control" id="filter-animales" placeholder="Filtrar animales...">
+        <table class="table table-striped" id="animales-table"><thead></thead><tbody></tbody></table>
+      </div>
+    </div>
+
+    <!-- Adopciones -->
+    <div class="tab-pane fade" id="adopciones-tab">
+      <div class="mt-3">
+        <h4>Agregar/Editar Adopción</h4>
+        <form id="form-adopciones" class="row g-3 mb-3">
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="ID Adopción" id="adopciones-ID_Adopcion" required></div>
+          <div class="col-md-2">
+            <select class="form-select" id="adopciones-ID_Animal"></select>
+          </div>
+          <div class="col-md-2">
+            <select class="form-select" id="adopciones-ID_Persona"></select>
+          </div>
+          <div class="col-md-2"><input type="date" class="form-control" id="adopciones-Fecha_Adopcion" required></div>
+          <div class="col-md-2">
+            <select class="form-select" id="adopciones-Estado">
+              <option value="Pendiente">Pendiente</option>
+              <option value="Aprobada">Aprobada</option>
+              <option value="Rechazada">Rechazada</option>
+            </select>
+          </div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Contrato (0/1)" id="adopciones-Contrato_Firmado"></div>
+          <div class="col-md-4"><input type="text" class="form-control" placeholder="Seguimiento" id="adopciones-Seguimiento"></div>
+          <div class="col-md-2"><input type="date" class="form-control" id="adopciones-Fecha_Seguimiento"></div>
+          <div class="col-md-4"><input type="text" class="form-control" placeholder="Observaciones" id="adopciones-Observaciones"></div>
+          <div class="col-12"><button class="btn btn-success">Guardar</button></div>
+        </form>
+
+        <input type="text" class="filter-input form-control" id="filter-adopciones" placeholder="Filtrar adopciones...">
+        <table class="table table-striped" id="adopciones-table"><thead></thead><tbody></tbody></table>
+      </div>
+    </div>
+
+    <!-- Donaciones -->
+    <div class="tab-pane fade" id="donaciones-tab">
+      <div class="mt-3">
+        <h4>Agregar/Editar Donación</h4>
+        <form id="form-donaciones" class="row g-3 mb-3">
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="ID Donación" id="donaciones-ID_Donacion" required></div>
+          <div class="col-md-2">
+            <select class="form-select" id="donaciones-ID_Persona"></select>
+          </div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Donante" id="donaciones-Donante"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Tipo Donación" id="donaciones-Tipo_Donacion"></div>
+          <div class="col-md-2"><input type="number" step="0.01" class="form-control" placeholder="Monto" id="donaciones-Monto"></div>
+          <div class="col-md-2"><input type="date" class="form-control" id="donaciones-Fecha"></div>
+          <div class="col-md-2">
+            <select class="form-select" id="donaciones-Metodo_Pago">
+              <option value="">Método</option>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Tarjeta">Tarjeta</option>
+            </select>
+          </div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Recibo Nº" id="donaciones-Recibo_Numero"></div>
+          <div class="col-md-4"><input type="text" class="form-control" placeholder="Cantidad/Descripción" id="donaciones-Cantidad_Descripcion"></div>
+          <div class="col-md-4"><input type="text" class="form-control" placeholder="Observaciones" id="donaciones-Observaciones"></div>
+          <div class="col-12"><button class="btn btn-success">Guardar</button></div>
+        </form>
+
+        <input type="text" class="filter-input form-control" id="filter-donaciones" placeholder="Filtrar donaciones...">
+        <table class="table table-striped" id="donaciones-table"><thead></thead><tbody></tbody></table>
+      </div>
+    </div>
+
+    <!-- Historial Médico -->
+    <div class="tab-pane fade" id="historial-tab">
+      <div class="mt-3">
+        <h4>Agregar/Editar Historial Médico</h4>
+        <form id="form-historial" class="row g-3 mb-3">
+          <div class="col-md-2"><input type="number" class="form-control" placeholder="ID Historial" id="historial-ID_Historial" required></div>
+          <div class="col-md-2">
+            <select class="form-select" id="historial-ID_Animal"></select>
+          </div>
+          <div class="col-md-2"><input type="date" class="form-control" id="historial-Fecha" required></div>
+          <div class="col-md-2"><input type="number" step="0.01" class="form-control" placeholder="Peso" id="historial-Peso"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Diagnóstico" id="historial-Diagnostico"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Tratamiento" id="historial-Tratamiento"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Vacunas" id="historial-Vacunas"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Medicamentos" id="historial-Medicamentos"></div>
+          <div class="col-md-2"><input type="text" class="form-control" placeholder="Veterinario" id="historial-Veterinario"></div>
+          <div class="col-md-2"><input type="date" class="form-control" id="historial-Proxima_Consulta"></div>
+          <div class="col-md-4"><input type="text" class="form-control" placeholder="Notas" id="historial-Notas"></div>
+          <div class="col-12"><button class="btn btn-success">Guardar</button></div>
+        </form>
+
+        <input type="text" class="filter-input form-control" id="filter-historial" placeholder="Filtrar historial...">
+        <table class="table table-striped" id="historial-table"><thead></thead><tbody></tbody></table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// --------- Helpers CRUD ----------
+async function getData(endpoint){ 
+    const res = await fetch(`http://localhost:3000/${endpoint}`);
+    return res.json();
+}
+async function postData(endpoint, data){
+    const res = await fetch(`http://localhost:3000/${endpoint}`, {
+        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    });
+    return res.json();
+}
+async function putData(endpoint, id, data){
+    const res = await fetch(`http://localhost:3000/${endpoint}/${id}`, {
+        method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    });
+    return res.json();
+}
+async function deleteData(endpoint, id){
+    const res = await fetch(`http://localhost:3000/${endpoint}/${id}`, {method:'DELETE'});
+    return res.json();
+}
+
+// --------- Render Tables ----------
+async function renderTable(endpoint, tableId, formId, filterId){
+    const data = await getData(endpoint);
+    const table = document.getElementById(tableId);
+    const filterInput = document.getElementById(filterId);
+    table.querySelector('thead').innerHTML = '';
+    table.querySelector('tbody').innerHTML = '';
+
+    if(data.length===0) return;
+
+    // Headers
+    const headers = Object.keys(data[0]);
+    let ths = headers.map(h=>`<th>${h}</th>`).join('');
+    ths += '<th>Acciones</th>';
+    table.querySelector('thead').innerHTML = `<tr>${ths}</tr>`;
+
+    // Rows
+    let rowsHtml = '';
+    data.forEach(row=>{
+        let tds = headers.map(h=>`<td>${row[h] ?? ''}</td>`).join('');
+        tds += `<td>
+            <button class="btn btn-sm btn-primary" onclick="editRecord('${endpoint}','${formId}',${row[headers[0]]})">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteRecord('${endpoint}','${tableId}',${row[headers[0]]})">Eliminar</button>
+        </td>`;
+        rowsHtml += `<tr>${tds}</tr>`;
+    });
+    table.querySelector('tbody').innerHTML = rowsHtml;
+
+    // Filter
+    filterInput.oninput = function(){
+        const filter = this.value.toLowerCase();
+        [...table.querySelectorAll('tbody tr')].forEach(tr=>{
+            tr.style.display = [...tr.querySelectorAll('td')].some(td=>td.textContent.toLowerCase().includes(filter)) ? '' : 'none';
+        });
+    }
+}
+
+// --------- Edit Record ----------
+async function editRecord(endpoint, formId, id){
+    const record = await getData(`${endpoint}/${id}`);
+    const form = document.getElementById(formId);
+    Object.keys(record).forEach(key=>{
+        if(form[key]) form[key].value = record[key];
+    });
+}
+
+// --------- Delete Record ----------
+async function deleteRecord(endpoint, tableId, id){
+    if(confirm('¿Eliminar este registro?')){
+        await deleteData(endpoint,id);
+        await renderTable(endpoint, tableId, 'form-'+endpoint, 'filter-'+endpoint);
+        loadSelects();
+    }
+}
+
+// --------- Form Submit ----------
+function handleForm(formId, endpoint, tableId){
+    const form = document.getElementById(formId);
+    form.addEventListener('submit', async e=>{
+        e.preventDefault();
+        const data = {};
+        [...form.elements].forEach(inp=>{ if(inp.name || inp.id) data[inp.id.replace(formId+'-','')] = inp.value; });
+        const idField = Object.keys(data)[0];
+        const idValue = data[idField];
+        if(await getData(`${endpoint}/${idValue}`).then(r=>r.mensaje==='No encontrado')) await postData(endpoint,data);
+        else await putData(endpoint,idValue,data);
+        form.reset();
+        await renderTable(endpoint, tableId, formId, 'filter-'+endpoint);
+        loadSelects();
+    });
+}
+
+// --------- Load Selects for Foreign Keys ----------
+async function loadSelects(){
+    const personas = await getData('personas');
+    const animales = await getData('animales');
+
+    const adopcionesPersona = document.getElementById('adopciones-ID_Persona');
+    const adopcionesAnimal = document.getElementById('adopciones-ID_Animal');
+    const donacionesPersona = document.getElementById('donaciones-ID_Persona');
+    const historialAnimal = document.getElementById('historial-ID_Animal');
+
+    [adopcionesPersona, donacionesPersona].forEach(sel=>{
+        sel.innerHTML = personas.map(p=>`<option value="${p.ID_Persona}">${p.Nombre} ${p.Apellido}</option>`).join('');
+    });
+    [adopcionesAnimal, historialAnimal].forEach(sel=>{
+        sel.innerHTML = animales.map(a=>`<option value="${a.ID_Animal}">${a.Nombre}</option>`).join('');
+    });
+}
+
+// --------- Initialize All ---------
+async function init(){
+    const tables = ['personas','animales','adopciones','donaciones','historial'];
+    for(const t of tables){
+        await renderTable(t,t+'-table','form-'+t,'filter-'+t);
+        handleForm('form-'+t,t,t+'-table');
+    }
+    loadSelects();
+}
+init();
+</script>
+
+</body>
+</html>

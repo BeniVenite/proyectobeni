@@ -1,45 +1,40 @@
 const express = require('express');
+const cors = require('cors'); // <-- importar cors
 const app = express();
 const puerto = 3000;
 
-// Importar conexión
-const conexion = require('./conexion');
-
+// Middlewares
 app.use(express.json());
-
-// Función para obtener siguiente ID
-function getNextId(tabla, campoId, callback) {
-    conexion.query(`SELECT MAX(${campoId}) AS maxId FROM ${tabla}`, (err, result) => {
-        if (err) return callback(err, null);
-        const nextId = (result[0].maxId || 0) + 1;
-        callback(null, nextId);
-    });
-}
-
-// Pasar conexión y función a routers
-app.set('conexion', conexion);
-app.set('getNextId', getNextId);
+app.use(cors()); // <-- habilitar CORS para todas las rutas
 
 // Importar routers
-app.use('/personas', require('./rutas/personas'));
-app.use('/animales', require('./rutas/animales'));
-app.use('/donaciones', require('./rutas/donaciones'));
-app.use('/adopciones', require('./rutas/adopciones'));
-app.use('/historial', require('./rutas/historial'));
+const animalesRouter = require('./rutas/animales');
+const personasRouter = require('./rutas/personas');
+const adopcionesRouter = require('./rutas/adopciones');
+const donacionesRouter = require('./rutas/donaciones');
+const historialRouter = require('./rutas/historial');
 
-// Plantillas para llenar campos en front o pruebas
-app.get('/plantillas/:tabla', (req, res) => {
-    const { tabla } = req.params;
+// Montar routers
+app.use('/animales', animalesRouter);
+app.use('/personas', personasRouter);
+app.use('/adopciones', adopcionesRouter);
+app.use('/donaciones', donacionesRouter);
+app.use('/historial', historialRouter);
 
-    const plantillas = {
-        personas: { Nombre: "", Direccion: "", Telefono: "", Email: "" },
-        animales: { Nombre: "", Especie: "", Raza: "", Edad: 0, Estado: "" },
-        donaciones: { ID_Persona: 0, Fecha: "YYYY-MM-DD", Monto: 0, Cantidad_Descripcion: "" },
-        adopciones: { ID_Persona: 0, ID_Animal: 0, Fecha_Adopcion: "YYYY-MM-DD", Observaciones: "" },
-        historial: { ID_Animal: 0, Fecha: "YYYY-MM-DD", Diagnostico: "", Tratamiento: "", Veterinario: "" }
-    };
+// Ruta raíz
+app.get('/', (req, res) => {
+    res.send('API PetCare Plus funcionando 🚀');
+});
 
-    res.json(plantillas[tabla] || { error: "Tabla no encontrada" });
+// Manejo de rutas no encontradas
+app.use((req, res) => {
+    res.status(404).json({ error: 'Ruta no encontrada' });
+});
+
+// Manejo de errores global
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Error interno del servidor' });
 });
 
 // Iniciar servidor
